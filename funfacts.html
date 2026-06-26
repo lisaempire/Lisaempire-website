@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Fun Facts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .fact-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            line-height: 1.6;
+            font-weight: 500;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .fact-counter {
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Fun Facts 🎉</h1>
+        <div class="fact-box" id="factBox">
+            Click the button below to discover a fun fact!
+        </div>
+        <button onclick="getRandomFact()">Get Random Fact</button>
+        <div class="fact-counter" id="counter"></div>
+    </div>
+
+    <script>
+        const funFacts = [
+            "Honey never spoils. Archaeologists have found 3000-year-old honey in Egyptian tombs that was still perfectly edible!",
+            "A group of flamingos is called a 'flamboyance' because of their pink, flashy feathers.",
+            "Octopuses have three hearts: two pump blood to the gills, and one pumps it to the rest of the body.",
+            "Bananas are berries, but strawberries aren't! Botanically speaking, bananas are berries while strawberries are aggregate fruits.",
+            "A day on Venus is longer than its year. Venus takes 243 Earth days to rotate on its axis but only 225 Earth days to orbit the Sun.",
+            "Cleopatra lived closer to the invention of the iPhone than to the construction of the Great Pyramid.",
+            "Wombats have cube-shaped poop! Their droppings are up to 2 cm cubes, which prevents them from rolling away.",
+            "Honey is the only food that doesn't require refrigeration and can last indefinitely.",
+            "The shortest war in history was between Britain and Zanzibar in 1896, lasting only 38-45 minutes.",
+            "Polar bears have black skin under their white fur, which helps them absorb the sun's heat.",
+            "A group of crows is called a 'murder' of crows.",
+            "Starfish don't have brains or blood. Instead, they have a water-based circulatory system.",
+            "Cats spend 70% of their lives sleeping or in a state of rest.",
+            "The Great Wall of China isn't visible from space without aid. This is a common myth!",
+            "Penguins propose to their mates with a pebble, similar to a diamond ring!",
+            "A group of owls is called a 'parliament' of owls.",
+            "Koalas sleep up to 22 hours a day because their eucalyptus diet is very low in energy.",
+            "The smell of petrichor (rain on dry ground) is caused by a compound called geosmin from soil bacteria.",
+            "An adult human body contains about 37.2 trillion cells.",
+            "The Eiffel Tower can be 15 cm taller in the summer due to thermal expansion of the iron."
+        ];
+
+        let lastIndex = -1;
+        let factCount = 0;
+
+        function getRandomFact() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * funFacts.length);
+            } while (randomIndex === lastIndex && funFacts.length > 1);
+
+            lastIndex = randomIndex;
+            factCount++;
+
+            const factBox = document.getElementById('factBox');
+            factBox.textContent = funFacts[randomIndex];
+
+            const counter = document.getElementById('counter');
+            counter.textContent = `Facts revealed: ${factCount}`;
+        }
+
+        // Show initial message
+        const counter = document.getElementById('counter');
+        counter.textContent = 'Facts revealed: 0';
+    </script>
+</body>
+</html>
